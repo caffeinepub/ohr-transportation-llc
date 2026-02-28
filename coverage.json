@@ -1,0 +1,111 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-04T02:01:01.528Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 4,
+    "implemented": 4,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Add tasteful, performance-friendly UI motion and micro-interactions across the site (Home, Quote, Booking, Tracking) using existing Tailwind + tailwindcss-animate utilities: hover/press states on cards and buttons, smooth section entrance animations on scroll, and subtle page transition behavior when navigating between SPA pages.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useInViewOnce.ts",
+          "frontend/src/components/MotionSection.tsx",
+          "frontend/src/index.css",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/pages/QuotePage.tsx",
+          "frontend/src/pages/BookingPage.tsx",
+          "frontend/src/pages/TrackingPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useInViewOnce.ts",
+          "frontend/src/components/MotionSection.tsx",
+          "frontend/src/index.css",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/pages/QuotePage.tsx",
+          "frontend/src/pages/BookingPage.tsx",
+          "frontend/src/pages/TrackingPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Make the Home page more interactive by turning the “Our Services” cards into an interactive exploration experience: clicking a service card should open an in-page details view (modal/dialog or expandable panel) with richer content (what’s included, ideal for, typical timeline) and a direct CTA button that navigates to Quote or Booking with the selected service pre-selected.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ServiceDetailsDialog.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/pages/QuotePage.tsx",
+          "frontend/src/pages/BookingPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ServiceDetailsDialog.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/pages/QuotePage.tsx",
+          "frontend/src/pages/BookingPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Improve form interactivity and feedback on Quote and Booking pages by adding real-time validation hints, clear inline field errors, and user-visible error handling for backend failures (e.g., estimate quote or create booking mutation fails). Add non-blocking success feedback (toast or inline success banner) where appropriate.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/FormFieldError.tsx",
+          "frontend/src/components/InlineBanner.tsx",
+          "frontend/src/pages/QuotePage.tsx",
+          "frontend/src/pages/BookingPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/FormFieldError.tsx",
+          "frontend/src/components/InlineBanner.tsx",
+          "frontend/src/pages/QuotePage.tsx",
+          "frontend/src/pages/BookingPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Enhance Tracking page interactivity: add a “Copy shipment ID” control, make tracking history entries expandable/collapsible (default condensed with a ‘View details’ toggle), and provide a lightweight loading skeleton for the results area instead of only a spinner card.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/TrackingResultsSkeleton.tsx",
+          "frontend/src/pages/TrackingPage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/TrackingResultsSkeleton.tsx",
+          "frontend/src/pages/TrackingPage.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/App.tsx",
+    "frontend/src/components/FormFieldError.tsx",
+    "frontend/src/components/InlineBanner.tsx",
+    "frontend/src/components/MotionSection.tsx",
+    "frontend/src/components/ServiceDetailsDialog.tsx",
+    "frontend/src/components/TrackingResultsSkeleton.tsx",
+    "frontend/src/hooks/useInViewOnce.ts",
+    "frontend/src/index.css",
+    "frontend/src/pages/BookingPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/QuotePage.tsx",
+    "frontend/src/pages/TrackingPage.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

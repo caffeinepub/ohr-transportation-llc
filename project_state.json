@@ -1,0 +1,244 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 7,
+  "summary": "Project has shifted from SwiftHaul Logistics to a new trucking/logistics marketing + operations website for Ohr Transportation LLC, featuring delivery service models (Long Haul, Expedite, Regional, Dedicated Freight) and core flows for booking a quote and tracking shipments by entering a shipment ID (no customer accounts/dashboard).",
+  "existing_features": [
+    {
+      "id": "IF-1",
+      "title": "Marketing homepage with services and CTAs",
+      "synonyms": [
+        "Landing page",
+        "Home screen"
+      ],
+      "description": "Homepage presents hero section, service offerings (regional, long haul, last mile, expedite), benefits list, and calls-to-action that navigate users to quote, booking, and tracking pages.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-2",
+      "title": "In-app page navigation (SPA)",
+      "synonyms": [
+        "Client-side navigation",
+        "Page state routing"
+      ],
+      "description": "App maintains a currentPage state and conditionally renders Home, Quote, Booking, or Tracking pages; Header and CTA buttons trigger navigation by setting this state.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-3",
+      "title": "Responsive header navigation with mobile menu",
+      "synonyms": [
+        "Top nav",
+        "Hamburger menu"
+      ],
+      "description": "Sticky header with logo and navigation buttons for all pages, including a mobile toggle menu that collapses navigation on small screens.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-4",
+      "title": "Site footer with company/services/contact details",
+      "synonyms": [
+        "Footer"
+      ],
+      "description": "Footer displays company description, services list, contact information, and attribution link.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-5",
+      "title": "Quote estimation form and display",
+      "synonyms": [
+        "Get a quote",
+        "Pricing estimate"
+      ],
+      "description": "QuotePage collects pickup/destination addresses, shipment weight, item type, and service type; calls backend estimateQuote and shows a formatted dollar estimate with a button to proceed to booking.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-6",
+      "title": "Shipment booking creation workflow",
+      "synonyms": [
+        "Book shipment",
+        "Create booking"
+      ],
+      "description": "BookingPage collects customer info, pickup/delivery addresses, shipment details (weight/dimensions/description), service type, and preferred pickup datetime; calls backend createBooking and displays a confirmation view containing the generated shipment ID and options to track or start a new booking.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-7",
+      "title": "Shipment tracking search and timeline view",
+      "synonyms": [
+        "Track shipment",
+        "Tracking history"
+      ],
+      "description": "TrackingPage allows searching by shipment ID; calls backend trackShipment to show current status, estimated delivery date, and a reverse-chronological timeline of tracking entries with locations, timestamps, and optional notes; shows a not-found error state when backend traps.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-8",
+      "title": "React Query data layer for backend operations",
+      "synonyms": [
+        "API hooks",
+        "Data fetching hooks"
+      ],
+      "description": "Custom hooks wrap backend calls using TanStack React Query: estimateQuote and createBooking as mutations (with invalidation) and trackShipment/getBooking as queries with enablement conditions tied to actor readiness.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-9",
+      "title": "ICP actor creation and lifecycle management",
+      "synonyms": [
+        "Backend actor hook",
+        "Canister client"
+      ],
+      "description": "useActor creates an anonymous actor when unauthenticated or an identity-bound actor when logged in; optionally calls initializeAccessControl when present; invalidates and refetches non-actor queries when the actor changes (e.g., identity switch).",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-10",
+      "title": "Internet Identity authentication provider",
+      "synonyms": [
+        "DFINITY Auth",
+        "II login"
+      ],
+      "description": "InternetIdentityProvider manages AuthClient initialization, loads stored identity, supports login via configured identity provider URL with a long-lived delegation TTL, and supports logout/clear; exposes status flags and errors via context.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-11",
+      "title": "Tailwind theming with dark mode and OKLCH design tokens",
+      "synonyms": [
+        "Design system",
+        "Theme variables"
+      ],
+      "description": "Global CSS defines OKLCH-based color variables for light/dark themes, Tailwind config maps tokens to semantic colors and enables dark mode via class strategy; includes typography/container-query/animate plugins.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-12",
+      "title": "Backend quote estimation endpoint",
+      "synonyms": [
+        "estimateQuote API"
+      ],
+      "description": "Motoko canister method estimateQuote computes a price estimate from weight and selected service type using a simple base-rate multiplier.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-13",
+      "title": "Backend booking storage and retrieval",
+      "synonyms": [
+        "createBooking/getBooking"
+      ],
+      "description": "Motoko canister stores bookings keyed by generated shipment IDs (e.g., SHIP1), creates an initial tracking entry at pickup, and exposes getBooking to retrieve full booking records.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-14",
+      "title": "Backend tracking updates and tracking query",
+      "synonyms": [
+        "updateTracking/trackShipment"
+      ],
+      "description": "Motoko canister supports appending tracking entries and updating current shipment status via updateTracking, and exposes trackShipment to return current status, tracking history, and estimated delivery timestamp.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-15",
+      "title": "Backend administrative listing queries",
+      "synonyms": [
+        "getBookingsByStatus",
+        "getAllBookingsByPickupTime"
+      ],
+      "description": "Motoko canister provides query methods to list bookings filtered by status and to list all bookings sorted by pickup time (useful for admin/ops views, not currently surfaced in the shown frontend).",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-16",
+      "title": "Backend stable persistence across canister upgrades",
+      "synonyms": [
+        "Stable storage",
+        "Upgrade persistence",
+        "Migration support"
+      ],
+      "description": "Motoko backend now includes upgrade-safe state handling via a migration module (preupgrade/postupgrade) so bookings and counters can persist across canister upgrades.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "feature-add-tasteful-performance-friendly-ui-motion-and-micro-interactions-across-the-site-home-quote-booking-tracking-using-existing-tailwind-tailwindcss-animate-utilities-hover-press-states-on-cards-and-buttons-smooth-section-entrance-animations-on-scroll-and-subtle-page-transition-behavior-when-navigating-between-spa-pages",
+      "title": "Add tasteful, performance-friendly UI motion and micro-interactions across the site (Home, Quote, Booking, Tracking) using existing Tailwind + tailwindcss-animate utilities: hover/press states on cards and buttons, smooth section entrance animations on scroll, and subtle page transition behavior when navigating between SPA pages.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-the-home-page-more-interactive-by-turning-the-our-services-cards-into-an-interactive-exploration-experience-clicking-a-service-card-should-open-an-in-page-details-view-modal-dialog-or-expandable-panel-with-richer-content-what-s-included-ideal-for-typical-timeline-and-a-direct-cta-button-that-navigates-to-quote-or-booking-with-the-selected-service-pre-selected",
+      "title": "Make the Home page more interactive by turning the “Our Services” cards into an interactive exploration experience: clicking a service card should open an in-page details view (modal/dialog or expandable panel) with richer content (what’s included, ideal for, typical timeline) and a direct CTA button that navigates to Quote or Booking with the selected service pre-selected.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-improve-form-interactivity-and-feedback-on-quote-and-booking-pages-by-adding-real-time-validation-hints-clear-inline-field-errors-and-user-visible-error-handling-for-backend-failures-e-g-estimate-quote-or-create-booking-mutation-fails-add-non-blocking-success-feedback-toast-or-inline-success-banner-where-appropriate",
+      "title": "Improve form interactivity and feedback on Quote and Booking pages by adding real-time validation hints, clear inline field errors, and user-visible error handling for backend failures (e.g., estimate quote or create booking mutation fails). Add non-blocking success feedback (toast or inline success banner) where appropriate.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-tracking-page-interactivity-add-a-copy-shipment-id-control-make-tracking-history-entries-expandable-collapsible-default-condensed-with-a-view-details-toggle-and-provide-a-lightweight-loading-skeleton-for-the-results-area-instead-of-only-a-spinner-card",
+      "title": "Enhance Tracking page interactivity: add a “Copy shipment ID” control, make tracking history entries expandable/collapsible (default condensed with a ‘View details’ toggle), and provide a lightweight loading skeleton for the results area instead of only a spinner card.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Make the Ohr Transportation LLC website more interactive (e.g., richer UI interactions/animations/interactive sections)",
+      "reqIds": [],
+      "status": "pending"
+    }
+  ],
+  "architectural_notes": [
+    "Frontend is a React SPA with local state-driven page routing (home/quote/booking/tracking) rather than a URL router.",
+    "TanStack React Query is used for async mutations/queries, caching, and explicit invalidation keyed by query keys (e.g., tracking, booking).",
+    "ICP integration uses an \"actor\" abstraction created via a configurable factory (createActorWithConfig), recreated when Internet Identity changes.",
+    "Internet Identity authentication is implemented as a React Context provider wrapping the app; identity is loaded on mount and login/logout are managed via @dfinity/auth-client.",
+    "Actor initialization optionally calls initializeAccessControl if present on the backend interface (supports multiple backend variants).",
+    "UI is composed with utility-first Tailwind CSS, dark mode via a .dark class, and an OKLCH CSS variable color system; includes Tailwind plugins (typography, container queries, animate).",
+    "Motoko backend is a single canister actor containing domain types (CustomerInfo, Address, ShipmentDetails, ServiceType, ShipmentStatus) and a bookings map keyed by shipmentId.",
+    "Backend exposes query methods for reads (getBooking, trackShipment, list queries) and shared update methods for writes (createBooking, updateTracking, estimateQuote).",
+    "Backend now includes a dedicated migration module (migration.mo) to support preupgrade/postupgrade state persistence and schema evolution."
+  ],
+  "known_issues": [
+    "Backend estimatedDelivery appears to use incorrect time units: pickupTime is treated as nanoseconds (frontend sends ms * 1_000_000), but the code adds 172800 (seconds) without converting to nanoseconds, producing an estimated delivery essentially equal to pickupTime.",
+    "No access control is enforced in the backend: any caller can call updateTracking and modify shipment status/history; caller is captured but not used for authorization.",
+    "Quote estimation logic is simplistic and ignores pickup/destination and itemType (weight * baseRate * 100).",
+    "Frontend quote/booking flows do not surface backend errors (no try/catch / user-visible error messaging in QuotePage/BookingPage).",
+    "BookingPage converts pickupDate to BigInt via new Date(pickupDate).getTime(); invalid/empty date input could produce NaN and throw when converting to BigInt (relying on browser validation only).",
+    "React Query invalidations reference keys like ['quotes'] and ['bookings'] but there are no corresponding list queries shown in the codebase, so invalidation may be redundant."
+  ],
+  "isFixRequest": false,
+  "gameProjectType": "none",
+  "projectName": "Ohr Transportation LLC",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

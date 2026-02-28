@@ -1,0 +1,92 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-add-tasteful-performance-friendly-ui-motion-and-micro-interactions-across-the-site-home-quote-booking-tracking-using-existing-tailwind-tailwindcss-animate-utilities-hover-press-states-on-cards-and-buttons-smooth-section-entrance-animations-on-scroll-and-subtle-page-transition-behavior-when-navigating-between-spa-pages",
+      "featureTitle": "Add tasteful, performance-friendly UI motion and micro-interactions across the site (Home, Quote, Booking, Tracking) using existing Tailwind + tailwindcss-animate utilities: hover/press states on cards and buttons, smooth section entrance animations on scroll, and subtle page transition behavior when navigating between SPA pages.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/MotionSection.tsx",
+        "frontend/src/hooks/useInViewOnce.ts",
+        "frontend/src/index.css",
+        "frontend/src/pages/BookingPage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/QuotePage.tsx",
+        "frontend/src/pages/TrackingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-1"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-make-the-home-page-more-interactive-by-turning-the-our-services-cards-into-an-interactive-exploration-experience-clicking-a-service-card-should-open-an-in-page-details-view-modal-dialog-or-expandable-panel-with-richer-content-what-s-included-ideal-for-typical-timeline-and-a-direct-cta-button-that-navigates-to-quote-or-booking-with-the-selected-service-pre-selected",
+      "featureTitle": "Make the Home page more interactive by turning the “Our Services” cards into an interactive exploration experience: clicking a service card should open an in-page details view (modal/dialog or expandable panel) with richer content (what’s included, ideal for, typical timeline) and a direct CTA button that navigates to Quote or Booking with the selected service pre-selected.",
+      "files": [
+        "frontend/src/App.tsx",
+        "frontend/src/components/ServiceDetailsDialog.tsx",
+        "frontend/src/pages/BookingPage.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/src/pages/QuotePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-2"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-improve-form-interactivity-and-feedback-on-quote-and-booking-pages-by-adding-real-time-validation-hints-clear-inline-field-errors-and-user-visible-error-handling-for-backend-failures-e-g-estimate-quote-or-create-booking-mutation-fails-add-non-blocking-success-feedback-toast-or-inline-success-banner-where-appropriate",
+      "featureTitle": "Improve form interactivity and feedback on Quote and Booking pages by adding real-time validation hints, clear inline field errors, and user-visible error handling for backend failures (e.g., estimate quote or create booking mutation fails). Add non-blocking success feedback (toast or inline success banner) where appropriate.",
+      "files": [
+        "frontend/src/components/FormFieldError.tsx",
+        "frontend/src/components/InlineBanner.tsx",
+        "frontend/src/pages/BookingPage.tsx",
+        "frontend/src/pages/QuotePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-3"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-enhance-tracking-page-interactivity-add-a-copy-shipment-id-control-make-tracking-history-entries-expandable-collapsible-default-condensed-with-a-view-details-toggle-and-provide-a-lightweight-loading-skeleton-for-the-results-area-instead-of-only-a-spinner-card",
+      "featureTitle": "Enhance Tracking page interactivity: add a “Copy shipment ID” control, make tracking history entries expandable/collapsible (default condensed with a ‘View details’ toggle), and provide a lightweight loading skeleton for the results area instead of only a spinner card.",
+      "files": [
+        "frontend/src/components/TrackingResultsSkeleton.tsx",
+        "frontend/src/pages/TrackingPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-4"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

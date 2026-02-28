@@ -1,0 +1,17 @@
+{
+  "frontend/src/App.tsx": "Main application component managing navigation state with optional pre-selected service type, rendering appropriate pages with subtle fade-in transitions between page changes.",
+  "frontend/src/components/Header.tsx": "Navigation header component with Ohr Transportation LLC branding, logo, desktop/mobile navigation menus, and page routing functionality.",
+  "frontend/src/components/Footer.tsx": "Footer component displaying Ohr Transportation LLC company information, updated services list (Regional, Long Haul, Expedited, Dedicated Freight), contact details, and caffeine.ai attribution.",
+  "frontend/src/pages/HomePage.tsx": "Homepage with animated sections, interactive service cards that open detail dialogs, and CTAs that navigate to Quote/Booking with pre-selected service types.",
+  "frontend/src/pages/QuotePage.tsx": "Quote estimation page with real-time validation, inline error messages, user-visible mutation error handling with retry option, and support for pre-selected service type from navigation.",
+  "frontend/src/pages/BookingPage.tsx": "Shipment booking page with real-time validation for weight and pickup date, inline error messages, mutation error handling that preserves form values, and support for pre-selected service type.",
+  "frontend/src/pages/TrackingPage.tsx": "Tracking page with copy-to-clipboard shipment ID functionality, expandable/collapsible tracking history entries with keyboard accessibility, and skeleton loading state for results.",
+  "frontend/src/hooks/useQueries.ts": "React Query hooks for all backend operations including estimateQuote, createBooking, trackShipment, and getBooking with proper state management and cache invalidation.",
+  "frontend/src/index.css": "Global styles with OKLCH color system, reduced motion support, and interactive utility classes for card hover/focus/active states.",
+  "frontend/src/hooks/useInViewOnce.ts": "Custom React hook using IntersectionObserver to detect when an element enters the viewport once, with support for prefers-reduced-motion accessibility preference.",
+  "frontend/src/components/MotionSection.tsx": "Wrapper component that animates children into view once using useInViewOnce hook with configurable delay and respects reduced motion preferences.",
+  "frontend/src/components/ServiceDetailsDialog.tsx": "Modal dialog component displaying detailed service information (what's included, ideal use cases, timeline) with CTAs to navigate to Quote or Booking pages with pre-selected service type.",
+  "frontend/src/components/FormFieldError.tsx": "Reusable inline error message component for form fields with accessible ARIA attributes and error icon.",
+  "frontend/src/components/InlineBanner.tsx": "Non-blocking banner component for displaying success, error, or info messages with optional dismiss button and action button.",
+  "frontend/src/components/TrackingResultsSkeleton.tsx": "Loading skeleton component for tracking results displaying placeholder cards with animated pulse effect while data is being fetched."
+}

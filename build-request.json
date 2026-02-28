@@ -1,0 +1,93 @@
+{
+  "kind": "build_request",
+  "title": "Increase interactivity across the Ohr Transportation LLC website",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Add tasteful, performance-friendly UI motion and micro-interactions across the site (Home, Quote, Booking, Tracking) using existing Tailwind + tailwindcss-animate utilities: hover/press states on cards and buttons, smooth section entrance animations on scroll, and subtle page transition behavior when navigating between SPA pages.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Can you make the website be more interactive?"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Home page service cards have noticeable hover + keyboard-focus styling (not only shadow), and a pressed state on click/tap.",
+        "Key sections (Home hero, services grid, features, CTA) animate into view once as the user scrolls (no jarring looping).",
+        "Navigating between pages (home/quote/booking/tracking) includes a subtle transition (e.g., fade/slide) without breaking existing layout or scroll behavior."
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Make the Home page more interactive by turning the “Our Services” cards into an interactive exploration experience: clicking a service card should open an in-page details view (modal/dialog or expandable panel) with richer content (what’s included, ideal for, typical timeline) and a direct CTA button that navigates to Quote or Booking with the selected service pre-selected.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Can you make the website be more interactive?"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Clicking a service card opens a details UI that can be dismissed via close button and Escape key.",
+        "The details UI includes a CTA that navigates to Quote and/or Booking and pre-selects the corresponding Service Type.",
+        "The experience is accessible (focus is trapped in the modal if a modal is used; keyboard navigation works)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Improve form interactivity and feedback on Quote and Booking pages by adding real-time validation hints, clear inline field errors, and user-visible error handling for backend failures (e.g., estimate quote or create booking mutation fails). Add non-blocking success feedback (toast or inline success banner) where appropriate.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Can you make the website be more interactive?"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Quote page shows inline validation feedback before submission (e.g., weight must be a positive number; required fields clearly indicated).",
+        "If quote estimation fails, the user sees an on-page error message (not only console errors) and can retry.",
+        "Booking page shows an on-page error message if booking creation fails, without losing the user’s entered form values."
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Enhance Tracking page interactivity: add a “Copy shipment ID” control, make tracking history entries expandable/collapsible (default condensed with a ‘View details’ toggle), and provide a lightweight loading skeleton for the results area instead of only a spinner card.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "Can you make the website be more interactive?"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Tracking page provides a one-click “Copy shipment ID” action with visible confirmation feedback.",
+        "Each tracking history entry can be expanded/collapsed to reveal/hide secondary details (e.g., notes), and the toggle is keyboard accessible.",
+        "When fetching tracking results, a skeleton state appears in the results region and is replaced by the real content when loaded."
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not edit files under frontend/src/components/ui (Shadcn components must be composed, not modified).",
+    "Do not edit frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, or frontend/src/main.tsx (immutable paths).",
+    "Keep the Internet Computer backend architecture unchanged (single Motoko actor) unless explicitly required by this request."
+  ],
+  "nonGoals": [
+    "Do not add customer accounts, dashboards, or real-time (WebSocket) tracking.",
+    "Do not change backend business logic (quote math, tracking authorization, time units) unless separately requested.",
+    "Do not introduce new third-party auth providers beyond Internet Identity."
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

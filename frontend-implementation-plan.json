@@ -1,0 +1,146 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Interactive motion + richer service exploration for Ohr Transportation LLC",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Add performance-friendly motion, micro-interactions, and subtle SPA page transitions across Home/Quote/Booking/Tracking using Tailwind + tailwindcss-animate.",
+      "acceptanceCriteria": [
+        "Home page service cards have noticeable hover + keyboard-focus styling (not only shadow), and a pressed state on click/tap.",
+        "Key sections (Home hero, services grid, features, CTA) animate into view once as the user scrolls (no jarring looping).",
+        "Navigating between pages (home/quote/booking/tracking) includes a subtle transition (e.g., fade/slide) without breaking existing layout or scroll behavior."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useInViewOnce.ts",
+          "operation": "create",
+          "description": "Create an IntersectionObserver-based hook that exposes a boolean for “entered viewport once” to power on-scroll entrance animations (respecting prefers-reduced-motion)."
+        },
+        {
+          "path": "frontend/src/components/MotionSection.tsx",
+          "operation": "create",
+          "description": "Create a small wrapper component that uses tailwindcss-animate utility classes to animate its children into view once using useInViewOnce (ensure animation runs only once, and supports reduced motion)."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Add global, accessible motion defaults: reduced-motion safeguards (disable/shorten transitions/animations when prefers-reduced-motion is set) and shared utility classes used for card/button focus + pressed states."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add subtle page transition behavior when switching SPA pages (e.g., keyed wrapper with tailwindcss-animate fade/slide) without affecting existing layout; ensure transitions don’t force-scroll or break current sticky header behavior."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Apply micro-interactions (hover/focus/active) to service cards and primary CTAs, and wrap key sections (hero, services, features, CTA) with MotionSection for smooth on-scroll entrance animations."
+        },
+        {
+          "path": "frontend/src/pages/QuotePage.tsx",
+          "operation": "modify",
+          "description": "Add tasteful motion to page sections/cards and improve interactive affordances (button/card hover/active/focus states) using Tailwind + tailwindcss-animate utilities."
+        },
+        {
+          "path": "frontend/src/pages/BookingPage.tsx",
+          "operation": "modify",
+          "description": "Add tasteful motion to page sections/cards and improve interactive affordances (button/card hover/active/focus states) using Tailwind + tailwindcss-animate utilities."
+        },
+        {
+          "path": "frontend/src/pages/TrackingPage.tsx",
+          "operation": "modify",
+          "description": "Add tasteful motion to results/history cards and controls (hover/active/focus states; animate-in results region) using Tailwind + tailwindcss-animate utilities."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Turn Home “Our Services” into an interactive exploration with an accessible details modal/panel and CTAs that navigate to Quote/Booking with the selected service pre-selected.",
+      "acceptanceCriteria": [
+        "Clicking a service card opens a details UI that can be dismissed via close button and Escape key.",
+        "The details UI includes a CTA that navigates to Quote and/or Booking and pre-selects the corresponding Service Type.",
+        "The experience is accessible (focus is trapped in the modal if a modal is used; keyboard navigation works)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ServiceDetailsDialog.tsx",
+          "operation": "create",
+          "description": "Create a service-details modal/dialog composed from shadcn-ui Dialog components to present richer service content (what’s included, ideal for, typical timeline) and CTAs to navigate to Quote/Booking with a selected ServiceType. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Extend the app’s navigation state to carry an optional “selected service type” (e.g., as part of a navigate function), and pass it into QuotePage/BookingPage so their Service Type is pre-selected when arriving from Home."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Make service cards interactive (click/keyboard) to open ServiceDetailsDialog; wire dialog close (button + Escape) and CTA actions that call the enhanced navigation to Quote/Booking with the selected service type."
+        },
+        {
+          "path": "frontend/src/pages/QuotePage.tsx",
+          "operation": "modify",
+          "description": "Accept an optional pre-selected ServiceType from App-level navigation and initialize/sync the Service Type select accordingly (so CTA from Home selects the correct option)."
+        },
+        {
+          "path": "frontend/src/pages/BookingPage.tsx",
+          "operation": "modify",
+          "description": "Accept an optional pre-selected ServiceType from App-level navigation and initialize/sync the Service Type select accordingly (so CTA from Home selects the correct option)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add real-time validation, clear inline errors, and user-visible mutation failure handling on Quote and Booking pages, plus non-blocking success feedback.",
+      "acceptanceCriteria": [
+        "Quote page shows inline validation feedback before submission (e.g., weight must be a positive number; required fields clearly indicated).",
+        "If quote estimation fails, the user sees an on-page error message (not only console errors) and can retry.",
+        "Booking page shows an on-page error message if booking creation fails, without losing the user’s entered form values."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/FormFieldError.tsx",
+          "operation": "create",
+          "description": "Create a small reusable inline field error/hint component for consistent rendering of validation messages and aria attributes (e.g., described-by linkage)."
+        },
+        {
+          "path": "frontend/src/components/InlineBanner.tsx",
+          "operation": "create",
+          "description": "Create an inline, non-blocking banner component (success/error/info) for user-visible feedback after mutations (kept on-page, no third-party additions)."
+        },
+        {
+          "path": "frontend/src/pages/QuotePage.tsx",
+          "operation": "modify",
+          "description": "Add real-time validation (e.g., weight > 0, required fields) with inline hints/errors, and wrap estimateQuote mutation in try/catch to show a user-visible error banner with a retry path; show a non-blocking success banner when an estimate is returned."
+        },
+        {
+          "path": "frontend/src/pages/BookingPage.tsx",
+          "operation": "modify",
+          "description": "Add real-time validation (e.g., weight > 0, pickup date present/valid) with inline hints/errors; handle createBooking mutation failures by showing an on-page error banner while preserving all entered values; show non-blocking success feedback in addition to the existing confirmation view as appropriate."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Improve Tracking interactivity with copy shipment ID, expandable history entries, and a results-area skeleton while loading.",
+      "acceptanceCriteria": [
+        "Tracking page provides a one-click “Copy shipment ID” action with visible confirmation feedback.",
+        "Each tracking history entry can be expanded/collapsed to reveal/hide secondary details (e.g., notes), and the toggle is keyboard accessible.",
+        "When fetching tracking results, a skeleton state appears in the results region and is replaced by the real content when loaded."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/TrackingResultsSkeleton.tsx",
+          "operation": "create",
+          "description": "Create a lightweight skeleton component for the Tracking results region using Tailwind (e.g., animate-pulse) to replace the current spinner-only loading experience."
+        },
+        {
+          "path": "frontend/src/pages/TrackingPage.tsx",
+          "operation": "modify",
+          "description": "Add a “Copy shipment ID” control near the displayed Shipment ID using the Clipboard API with visible confirmation feedback; implement expandable/collapsible tracking history entries (keyboard-accessible toggle with aria-expanded) and use TrackingResultsSkeleton during loading instead of only the spinner card."
+        }
+      ]
+    }
+  ]
+}
